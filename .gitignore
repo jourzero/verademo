@@ -10,3 +10,10 @@ target/
 WebContent/
 flaws.json
 .vscode/settings.json
+.m2
+dist
+docker-run.sh
+utils/download-mvn.sh
+docker-start.sh
+.bash_history
+.bashrc
