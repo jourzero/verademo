@@ -42,16 +42,16 @@ jobs:
         # The type of runner that the job will run on
         runs-on: ubuntu-latest
         steps:
-            ## Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it and copies all sources into ZIP file for submitting for analysis. Replace this section with your applications build steps
-            #- uses: actions/checkout@v2
-            #  with:
-            #      repository: ""
-
-            # Download war file to scan
+            # Get war file from build job (seems to provide better scan results than the below zip packaging)
             - name: Download war file to scan
               uses: actions/download-artifact@v2
               with:
                   name: warfile
+
+            ## Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it and copies all sources into ZIP file for submitting for analysis. Replace this section with your applications build steps
+            #- uses: actions/checkout@v2
+            #  with:
+            #      repository: ""
 
             #- uses: papeloto/action-zip@v1
             #  with:
