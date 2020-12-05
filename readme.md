@@ -98,4 +98,5 @@ Starting container verademo... To use the app, browse to http://127.0.0.1:4080/v
 -- Tailing the tomcat log...
 [...]
 05-Dec-2020 18:05:25.764 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [7249] milliseconds
+
 ```
