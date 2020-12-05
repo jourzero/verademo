@@ -67,45 +67,28 @@ See the `docs` folder
 ## Docker notes
 
 ```bash
+# Download code
+host$ git clone https://github.com/jourzero/verademo.git
+
+host$ cd verademo
+
 # Build image
-$ docker build -t verademo .
+host$ docker build -t verademo .
 
-# Start container which drops into bash (don't use --rm to keep it after exit)
-$ docker run -it -p 127.0.0.1:8080:8080 --name verademo verademo
+# Start container which starts mariadb, initializes the DB and starts tomcat
+host$ ./docker-run.sh
+Starting container verademo... To use the app, browse to http://127.0.0.1:4080/verademo
 
-# Install MySQL
-root@809a822f230f:/app# cd utils
-root@809a822f230f:/app/utils# ./install_mysql.sh
+-- Starting mariadb...
+[ ok ] Starting MariaDB database server: mysqld.
 [...]
-  1. MySQL Server & Cluster (Currently selected: mysql-8.0)  3. MySQL Preview Packages (Currently selected: Disabled)
-  2. MySQL Tools & Connectors (Currently selected: Enabled)  4. Ok
-Which MySQL product do you wish to configure? 1
+
+-- Initializing the DB...
+
+-- Starting Tomcat...
 [...]
-  1. mysql-5.7  2. mysql-8.0  3. mysql-cluster-7.5  4. mysql-cluster-7.6  5. mysql-cluster-8.0  6. None
-Which server version do you wish to receive? 1
+
+-- Tailing the tomcat log...
 [...]
-  1. MySQL Server & Cluster (Currently selected: mysql-5.7)  3. MySQL Preview Packages (Currently selected: Disabled)
-  2. MySQL Tools & Connectors (Currently selected: Enabled)  4. Ok
-Which MySQL product do you wish to configure? 4
-[...]
-Enter root password: RETURN (leave blank)
-[...]
-[info] MySQL Community Server 5.7.32 is started.
-
-# Create a blab user and database
-root@ac06bd7a5274:/app/utils# mysql < create_user.sql
-
-# Start Tomcat
-root@ac06bd7a5274:/app/utils# ./start_tomcat.sh
-
-# Browse to http://localhost:8080/verademo
-# Click Reset menu and Reset button
-# Notice a bunch of data creation activities in the Tomcat outputs
-# Click Register menu and register a user
-# Play!
-
-
-# Restart container after exit (to avoid recreating )
-$ docker start -i verademo
-root@4d76084d8877:/app#
+05-Dec-2020 18:05:25.764 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [7249] milliseconds
 ```

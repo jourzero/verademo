@@ -5,7 +5,7 @@ echo -e "\n-- Starting mariadb..."
 service mysql start
 service mysql status
 
-echo -e "\n-- Initializating the DB..."
+echo -e "\n-- Initializing the DB..."
 mysql < /app/utils/dbinit.sql
 
 # Start tomcat and serve verademo app
