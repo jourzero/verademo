@@ -48,21 +48,21 @@ jobs:
               with:
                   name: warfile
 
-            ## Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it and copies all sources into ZIP file for submitting for analysis. Replace this section with your applications build steps
-            #- uses: actions/checkout@v2
-            #  with:
-            #      repository: ""
+            # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it and copies all sources into ZIP file for submitting for analysis. Replace this section with your applications build steps
+            - uses: actions/checkout@v2
+              with:
+                  repository: ""
 
-            #- uses: papeloto/action-zip@v1
-            #  with:
-            #      files: /
-            #      recursive: true
-            #      dest: veracode-pipeline-scan-results-to-sarif.zip
+            - uses: papeloto/action-zip@v1
+              with:
+                  files: /
+                  recursive: true
+                  dest: veracode-pipeline-scan-results-to-sarif.zip
 
-            #- uses: actions/upload-artifact@v1
-            #  with:
-            #      name: my-artifact
-            #      path: veracode-pipeline-scan-results-to-sarif.zip
+            - uses: actions/upload-artifact@v1
+              with:
+                  name: my-artifact
+                  path: veracode-pipeline-scan-results-to-sarif.zip
 
             # download the Veracode Static Analysis Pipeline scan jar
             - uses: wei/curl@master
@@ -75,7 +75,7 @@ jobs:
               with:
                   java-version: 1.8
 
-            # List fiels
+            # List files
             - run: ls -lR
 
             # Run the pipeline scan
