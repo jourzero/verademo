@@ -22,6 +22,12 @@ jobs:
               with:
                   repository: ""
 
+            # Download war file to scan
+            - name: Download war file to scan
+              uses: actions/download-artifact@v2
+              with:
+                  name: warfile
+
             - uses: papeloto/action-zip@v1
               with:
                   files: /
