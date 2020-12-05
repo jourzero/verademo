@@ -14,3 +14,4 @@ flaws.json
 dist
 .bash_history
 .bashrc
+veracode-pipeline-scan-results.json
