@@ -75,6 +75,13 @@ host$ cd verademo
 # Build image
 host$ docker build -t verademo .
 
+Sending build context to Docker daemon  44.32MB
+Step 1/8 : FROM tomcat:latest
+[...]
+Step 8/8 : CMD /app/utils/entrypoint.sh
+[...]
+Successfully tagged verademo:latest
+
 # Start container which starts mariadb, initializes the DB and starts tomcat
 host$ ./docker-run.sh
 Starting container verademo... To use the app, browse to http://127.0.0.1:4080/verademo
