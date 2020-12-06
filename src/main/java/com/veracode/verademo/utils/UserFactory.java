@@ -40,9 +40,11 @@ public class UserFactory {
 		ObjectInputStream in;
 		try {
 			/* START BAD CODE */
+			logger.info("Cookie deserialization started -- CWE-502: call to java.io.ObjectInput.readObject() constructed with untrusted cookie data");
 			in = new ObjectInputStream(decodedstream);
 			User user = (User) in.readObject();
 			in.close();
+			logger.info("Cookie deserialization completed");
 			/* END BAD CODE */
 
 			return user;
