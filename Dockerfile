@@ -1,5 +1,7 @@
-# Use tomcat image since the app requires Tomcat (tomcat:latest := 9.0.40-jdk11-openjdk-buster)
-FROM tomcat:latest 
+# Use tomcat image since the app requires Tomcat 
+#tomcat:latest := 9.0.40-jdk11-openjdk-buster
+#FROM tomcat:latest 
+FROM tomcat:7.0.107-jdk8-openjdk-buster
 EXPOSE 8080
 
 # Install needed packages

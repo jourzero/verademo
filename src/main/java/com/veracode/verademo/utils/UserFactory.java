@@ -44,16 +44,18 @@ public class UserFactory {
 			in = new ObjectInputStream(decodedstream);
 			User user = (User) in.readObject();
 			in.close();
-			logger.info("Cookie deserialization completed");
+			logger.info("Cookie deserialization succeeded");
 			/* END BAD CODE */
 
 			return user;
 
 		}
 		catch (IOException e) {
+			logger.error("Cookie deserialization resulted in IO Exception");
 			e.printStackTrace();
 		}
 		catch (ClassNotFoundException e) {
+			logger.error("Cookie deserialization resulted in Class Not Found Exception");
 			e.printStackTrace();
 		}
 
