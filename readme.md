@@ -128,7 +128,7 @@ The below shows how the insecure deserialization issue found in [Veracode Pipeli
 
 ## Generate different payloads
 
-First we use ysoserial to generate attack Remote Command Execution (RCE) payloads that'll attempt to simply execute `touch /tmp/PAYLOAD_NAME` on the target:
+First we use [ysoserial](https://github.com/frohoff/ysoserial) to generate payloads for a Remote Command Execution (RCE) attack, hoping that some gadgets will existing in the app's classpath. The attack will simply attempt to execute `touch /tmp/PAYLOAD_NAME` on the target.
 
 ```bash
 $ cat gen-payloads.sh
