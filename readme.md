@@ -122,7 +122,9 @@ Starting container verademo... To use the app, browse to http://127.0.0.1:4080/v
 
 # Deserialization Exploit with Ysoserial
 
-The below shows how the issue found in [Veracode Pipeline Scan](veracode-pipeline-scan-results.json#L563) could be exploited.
+The below shows how the insecure deserialization issue found in [Veracode Pipeline Scan](veracode-pipeline-scan-results.json#L563) could be exploited. The [Veracode Agent-Based SCA](https://github.com/jourzero/verademo/blob/master/veracode-sca-results.json#L2748) results are also quite useful to explain the issue:
+
+> Potential Remote Code Execution Via Java Object Deserialization ([CVE-2015-4852](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-4852)): Apache Commons includes a class called InvokerTransformer. An application is vulnerable to a deserialization attack if this class is available on the classpath and the application deserializes untrusted or user-supplied data. It's not necessary to actually use InvokerTransfomer to be vulnerable. With these two criteria satisfied, an attacker may construct a gadget chain using classes in the component to execute arbitrary code. The chain relies on the class InvokerTransformer in the org.apache.commons.collections.functors package to invoke methods during the deserialization process. The fix prevents deserialization of InvokerTransformer by default unless it's specifically enabled. CVE-2015-4852, CVE-2015-6420, CVE-2015-7501, and CVE-2015-7450 are all related to this artifact.
 
 ## Generate different payloads
 
