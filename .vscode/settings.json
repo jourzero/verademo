@@ -1,0 +1,5 @@
+{
+    "unofficialVeracodeExtension.pipelineScanFilepath": "target/verademo.war",
+    "unofficialVeracodeExtension.jspRoot": "src/main/webapp",
+    "unofficialVeracodeExtension.sourceRoot": "src/main/java"
+}

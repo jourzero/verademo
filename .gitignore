@@ -9,10 +9,7 @@ target/
 .project
 WebContent/
 flaws.json
-.vscode/settings.json
 .m2
 dist
 .bash_history
 .bashrc
-veracode-pipeline-scan-results.json
-veracode-sca-results.json
