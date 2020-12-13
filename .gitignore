@@ -13,3 +13,4 @@ flaws.json
 dist
 .bash_history
 .bashrc
+.github/workflows/old/
