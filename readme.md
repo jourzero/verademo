@@ -154,7 +154,7 @@ CommonsCollections2.bin.b64 CommonsCollections4.bin.b64 CommonsCollections6.bin.
 
 ## Successful exploitation with CommonsCollections2
 
-After a few attempt, we determined that the CommonsCollections2 payload was successful for RCE (va "rO0..." injected in the cookie).
+After a few attempt, we determined that the CommonsCollections2 payload was successful for RCE (via "rO0..." injected in the cookie).
 
 Here's an example attack (don't worry about HTTP 500):
 
@@ -323,7 +323,7 @@ CommonsCollections2  hsperfdata_root
 
 ## Successful exploitation with CommonsCollections4
 
-After a few attempt, we determined that the CommonsCollections4 payload was also successful for RCE (va "rO0..." injected in the cookie):
+After a few attempt, we determined that the CommonsCollections4 payload was also successful for RCE (via "rO0..." injected in the cookie):
 
 ```http
 =======http://verademo.me:4080/verademo/login?target=profile======
